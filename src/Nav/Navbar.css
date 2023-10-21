@@ -1,0 +1,78 @@
+/* Base styles for larger screens */
+.navbar {
+    background-color: #333;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+  }
+  
+  .logo {
+    font-size: 24px;
+  }
+  
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+  }
+  
+  .nav-links li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+  }
+  
+  .nav-links li a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Styles for the "X" button */
+.close_button {
+    font-size: 24px;
+    cursor: pointer;
+    display: none;
+  }
+.hamburger, .hidden{
+    display: none;
+}
+  /* Responsive styles for smaller screens */
+  @media (max-width: 768px) {
+    .hamburger {
+      font-size: 24px;
+      cursor: pointer;
+      display: block;
+    }
+
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      background-color: #333;
+      position: absolute;
+      top: 60px;
+      left: 0;
+      right: 0;
+      z-index: 1;
+    }
+  
+    .nav-links.open {
+      display: flex;
+    }
+  
+    .close_button {
+      display: block;
+      position: absolute;
+      top: 10px;
+      right: 20px;
+    }
+  
+    .nav-links li {
+      padding: 10px;
+    }
+  
+    .nav-links li a {
+      color: #fff;
+    }
+  }
+  
