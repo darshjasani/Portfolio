@@ -9,29 +9,31 @@ function TextAnima({ text, delay, infinite }) {
         let interval;
 
         const type = () => {
-        setDisplayText((prevText) => prevText + text[currentIndex]);
-        currentIndex++;
+            console.log("type : " + currentIndex);
+            setDisplayText(prevText => text.slice(0,currentIndex));
+            ++currentIndex;
 
-        if (currentIndex === text.length) {
-            clearInterval(interval);
-            currentIndex = -1;
-            //setTimeout(erase, 1000);
-            
-        }
-        };
-
-        const erase = () => {
-            setDisplayText((prevText) => prevText.slice(0,currentIndex));
-            currentIndex++;
-    
-            if (-currentIndex === text.length) {
-            clearInterval(interval);
-            currentIndex = 0;
-            setTimeout(type, 1000);
+            if (currentIndex === text.length+1) {
+                clearInterval(interval);
+                currentIndex = -1;
+                interval = setInterval(erase, 300);
+                
             }
         };
 
-        interval = setInterval(type, 100);
+        const erase = () => {
+            console.log("erase :" + currentIndex)
+            setDisplayText(prevText => text.slice(0,currentIndex));
+            --currentIndex;
+    
+            if (currentIndex + text.length === 0) {
+                clearInterval(interval);
+                currentIndex = 0;
+                interval = setInterval(type, 350);
+            }
+        };
+
+        interval = setInterval(type, 350);
 
         // Cleanup on component unmount
         return () => clearInterval(interval);
@@ -39,7 +41,7 @@ function TextAnima({ text, delay, infinite }) {
 
 
   return (
-        <span>{prevText + "."}</span>
+        <div>{prevText + "."}</div>
   )
 }
 
